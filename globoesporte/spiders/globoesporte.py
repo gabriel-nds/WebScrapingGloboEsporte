@@ -1,6 +1,5 @@
+import scrapy
 from ..items import JournalItem
-import scrapy
-import scrapy
 
 class GloboesporteSpider(scrapy.Spider):
     name = "globoesporte"
