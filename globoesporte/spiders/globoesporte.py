@@ -1,5 +1,6 @@
 import scrapy
 from ..items import JournalItem
+#TEST
 
 class GloboesporteSpider(scrapy.Spider):
     name = "globoesporte"
