@@ -1,7 +1,7 @@
 from ..items import JournalItem
 import scrapy
 import scrapy
-
+#lets see what happens
 
 class GloboesporteSpider(scrapy.Spider):
     name = "globoesporte"
