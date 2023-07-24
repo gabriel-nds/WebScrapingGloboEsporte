@@ -72,9 +72,13 @@ author: The author of the article.
 text: The main text content of the article.
 quotes: A JSON-encoded string representing a list of dictionaries containing quote texts and their authors (if available).
 
+![E8692FB3-30B7-4C9E-A1BC-E780986063E5_4_5005_c](https://github.com/gabriel-nds/WebScrapingGloboEsporte/assets/118403829/5c300fe0-0617-48a9-bd02-8ebe81556428)
+
 ### MongoDB Pipeline
 
 The spider also saves the scraped data in a NoSQL database, MongoDB. The data is stored in a collection named articles within the GloboEsporte_Scraped_Data database. The structure of the data in MongoDB is the same as that of the SQLite pipeline.
+
+![FE9E352A-A602-460D-A57A-310B97423D63_4_5005_c](https://github.com/gabriel-nds/WebScrapingGloboEsporte/assets/118403829/fb2ddefe-0f51-423f-9702-9fef117d975b)
 
 ### Known Issues
 
