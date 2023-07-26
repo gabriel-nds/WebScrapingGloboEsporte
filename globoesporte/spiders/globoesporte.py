@@ -2,7 +2,6 @@ import scrapy
 from scrapy_splash import SplashRequest
 from ..items import JournalItem
 
-
 class GloboesporteSpider(scrapy.Spider):
     name = "globoesporte"
     allowed_domains = ["ge.globo.com"]
