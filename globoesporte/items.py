@@ -12,9 +12,13 @@ class GloboesporteItem(scrapy.Item):
     pass
 
 class JournalItem(scrapy.Item):
+    date = scrapy.Field()
+    time = scrapy.Field()
     title = scrapy.Field()
     subtitle = scrapy.Field()
     author = scrapy.Field()
     city = scrapy.Field()
     text = scrapy.Field()
     quotes = scrapy.Field()
+    related_links = scrapy.Field()
+    
