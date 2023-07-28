@@ -1,0 +1,5 @@
+{
+  "argv": ["python3", "-m", "splash.kernel", "-f", "{connection_file}"],
+  "display_name": "Splash",
+  "language": "lua"
+}
