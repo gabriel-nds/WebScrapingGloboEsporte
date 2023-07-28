@@ -64,8 +64,8 @@ DOWNLOAD_DELAY = 1  # Set the delay to 1 second between requests
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "globoesporte.pipelines.GloboesportePipeline": 200,
-   "globoesporte.pipelines.MongodbPipeline": 300,
-   "globoesporte.pipelines.SQLitePipeline": 400,
+#    "globoesporte.pipelines.MongodbPipeline": 300,
+#    "globoesporte.pipelines.SQLitePipeline": 400,
    }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -94,7 +94,7 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-# Splash set up
+# # Splash set up
 SPLASH_URL = 'http://localhost:8050'
 
 DOWNLOADER_MIDDLEWARES = {
