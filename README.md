@@ -20,10 +20,10 @@ python -m venv venv
 source venv/bin/activate   # On Windows, use "venv\Scripts\activate"
 ```
 
-3. Install the required dependencies:
+3. Install the required dependencies using the requirements.txt:
 
 ```bash
-pip install scrapy
+pip install -r requirements.txt
 ```
 
 ## How to Use
@@ -43,9 +43,9 @@ name: The name of the spider (globoesporte).
 allowed_domains: The allowed domains for the spider (ge.globo.com).
 start_urls: The URLs to start scraping from (in this case, https://ge.globo.com).
 
-### Parsing Articles
+### JavaScript Rendering with Selenium
 
-The spider uses the parse method to navigate through the main page and extract URLs of individual articles. It then follows each URL and calls the parse_article method to extract detailed information from each article.
+Certain websites load their content dynamically using JavaScript, making it challenging for Scrapy alone to access the desired data. In such cases, we  explore the use of Selenium. Selenium allows us to automate a web browser, enabling us to interact with dynamic elements. The spider uses Selenium to navigate through the main page and extract URLs of individual articles. It then follows each URL and calls the parse_article method to extract detailed information from each article.
 
 ### Article Data Extracted
 
@@ -89,12 +89,6 @@ The spider may not handle certain edge cases where the website structure changes
 Contributions to this project are welcome. If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## Future Prospects
-
-As the `globoesporte` spider project evolves, we expect to encounter websites that present challenges for traditional web scraping due to their heavy reliance on JavaScript to render content dynamically. To address this, we plan to explore two potential solutions: Selenium and Scrapy Splash.
-
-### JavaScript Rendering with Selenium and Scrapy Splash
-
-Certain websites load their content dynamically using JavaScript, making it challenging for Scrapy alone to access the desired data. In such cases, we intend to explore the use of Selenium or Scrapy Splash. Selenium allows us to automate a web browser, enabling us to interact with dynamic elements. Scrapy Splash, on the other hand, integrates a headless browser with Scrapy, providing JavaScript rendering capabilities and overcoming the limitations of traditional scraping.
 
 ### Automation with CircleCI
 
