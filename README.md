@@ -20,10 +20,10 @@ python -m venv venv
 source venv/bin/activate   # On Windows, use "venv\Scripts\activate"
 ```
 
-3. Install the required dependencies:
+3. Install the required dependencies using the requirements.txt:
 
 ```bash
-pip install scrapy
+pip install -r requirements.txt
 ```
 
 ## How to Use
