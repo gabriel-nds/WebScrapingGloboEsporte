@@ -1,6 +1,9 @@
 # GloboEsporte Spider
 
-![Scrapy](https://img.shields.io/badge/Scrapy-2.5.0-green)
+![Python](https://img.shields.io/badge/Python-3.11.2-pink)
+![Scrapy](https://img.shields.io/badge/Scrapy-2.9.0-green)
+![Selenium](https://img.shields.io/badge/Selenium-4.10.0-blue)
+
 
 The `globoesporte` spider is a web scraping tool built using Scrapy to extract sports news articles from ge.globo.com. It navigates through the website, extracts article details, and stores the data for further analysis or processing.
 
@@ -34,6 +37,13 @@ scrapy crawl globoesporte
 ```
 The spider will start scraping data from ge.globo.com, and the extracted information will be displayed in the console. For more advanced data handling, For more advanced data handling, the spider uses two pipelines to store the data in different databases.
 
+If you want to adjust the cutoff date (number of days) for filtering articles, you can do the following:
+
+In the parse_article method, you can adjust the cutoff date setting. For example:
+```bash
+cutoff_date = datetime.now() - timedelta(days=30)
+```
+
 ## Spider Structure
 ### Spider Class: GloboesporteSpider
 
@@ -41,7 +51,7 @@ The GloboesporteSpider class is the main spider responsible for crawling ge.glob
 
 name: The name of the spider (globoesporte).
 allowed_domains: The allowed domains for the spider (ge.globo.com).
-start_urls: The URLs to start scraping from (in this case, https://ge.globo.com).
+start_urls: The URLs to start scraping from (in this case, https://ge.globo.com/futebol/times/flamengo/).
 
 ### JavaScript Rendering with Selenium
 
@@ -51,12 +61,15 @@ Certain websites load their content dynamically using JavaScript, making it chal
 
 The following data is extracted from each article:
 
+date: The date of publication.
+time: The time of publication (if available).
 title: The title of the article.
 subtitle: The subtitle of the article (if available).
 author: The author of the article.
 city: The city associated with the article.
 text: The main text content of the article.
 quotes: A list of dictionaries containing quote texts and their authors (if available).
+related_links: A list of related links or URLs associated with the article.
 
 ## Data Storage
 
@@ -64,21 +77,11 @@ The globoesporte spider utilizes two pipelines for data storage:
 
 ### SQLite Pipeline
 
-The spider stores scraped data in an SQLite database named ge_articles.db. The SQLite pipeline creates a table named ge_transcripts, and the data is structured as follows:
-
-title: The title of the article.
-subtitle: The subtitle of the article (if available).
-author: The author of the article.
-text: The main text content of the article.
-quotes: A JSON-encoded string representing a list of dictionaries containing quote texts and their authors (if available).
-
-![E8692FB3-30B7-4C9E-A1BC-E780986063E5_4_5005_c](https://github.com/gabriel-nds/WebScrapingGloboEsporte/assets/118403829/5c300fe0-0617-48a9-bd02-8ebe81556428)
+The spider stores scraped data in an SQLite database named ge_articles.db. The SQLite pipeline creates a table named ge_transcripts.
 
 ### MongoDB Pipeline
 
 The spider also saves the scraped data in a NoSQL database, MongoDB. The data is stored in a collection named articles within the GloboEsporte_Scraped_Data database. The structure of the data in MongoDB is the same as that of the SQLite pipeline.
-
-![FE9E352A-A602-460D-A57A-310B97423D63_4_5005_c](https://github.com/gabriel-nds/WebScrapingGloboEsporte/assets/118403829/fb2ddefe-0f51-423f-9702-9fef117d975b)
 
 ### Known Issues
 
