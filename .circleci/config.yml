@@ -18,21 +18,7 @@ jobs:
           name: Install Dependencies
           command: |
             pip install -r requirements.txt
-
-      - run:
-          name: Install Chrome and Chrome WebDriver
-          command: |
-            apt-get update
-            apt-get install -y wget
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-            sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-            apt-get update
-            apt-get install -y google-chrome-stable
-            LATEST_CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-            wget -q -N https://chromedriver.storage.googleapis.com/$LATEST_CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-            unzip chromedriver_linux64.zip -d /usr/local/bin
-            chmod +x /usr/local/bin/chromedriver
-
+      
       - run:
           name: Run Spider
           command: scrapy crawl globoesporte
