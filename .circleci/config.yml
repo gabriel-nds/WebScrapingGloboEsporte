@@ -2,12 +2,12 @@ version: 2.1
 executors:
   my-custom-executor:
     docker:
-      - image: cimg/base:stable
+      - image: python:3.9
         auth:
-          # ensure you have first added these secrets
-          # visit app.circleci.com/settings/project/github/gabriel-nds/WebScrapingGloboEsporte/environment-variables
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PASSWORD
+          # Ensure you have first added these secrets
+          # Visit app.circleci.com/settings/project/github/gabriel-nds/WebScrapingGloboEsporte/environment-variables
+          username: $GE_SPIDER_VAR
+          password: $ge-value-usd\\$
 
 jobs:
   ge-flamengo-spider:
