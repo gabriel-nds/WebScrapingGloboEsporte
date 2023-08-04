@@ -11,7 +11,7 @@ import pymongo
 
 class GloboesportePipeline:
 
-    def open_spider(self, sider):
+    def open_spider(self, spider):
         logging.warning('***************** SPIDER OPENED - PIPELINE *****************')
 
     def close_spider (self, spider):
@@ -19,9 +19,10 @@ class GloboesportePipeline:
 
     def process_item(self, item, spider):
         return item
+   
     
 class MongodbPipeline:
-    collection_name = 'articles'
+    collection_name = 'GE_Flamengo_2023_News'
 
     def open_spider(self, spider):
         self.client = pymongo.MongoClient("mongodb+srv://globoesporte_webscraping:gPbuLCGnbnH2ApAG@globoesporte.o6lbwjs.mongodb.net/?retryWrites=true&w=majority")
@@ -33,6 +34,7 @@ class MongodbPipeline:
     def process_item(self, item, spider):
         self.db[self.collection_name].insert_one(dict(item))
         return item
+
 
 class SQLitePipeline:
     collection_name = 'articles'

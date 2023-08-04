@@ -7,6 +7,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+
 BOT_NAME = "globoesporte"
 
 SPIDER_MODULES = ["globoesporte.spiders"]
@@ -93,3 +94,4 @@ ITEM_PIPELINES = {
 # REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 # TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 # FEED_EXPORT_ENCODING = "utf-8"
+
