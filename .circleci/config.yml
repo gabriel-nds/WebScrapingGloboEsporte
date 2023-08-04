@@ -6,8 +6,8 @@ executors:
         auth:
           # Ensure you have first added these secrets
           # Visit app.circleci.com/settings/project/github/gabriel-nds/WebScrapingGloboEsporte/environment-variables
-          username: globoesporte  
-          password: globoesportekey
+          username: $globoesporte  
+          password: $globoesportekey
 
 jobs:
   ge-flamengo-spider:
