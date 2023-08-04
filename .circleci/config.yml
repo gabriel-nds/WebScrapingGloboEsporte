@@ -1,0 +1,30 @@
+version: 2.1
+executors:
+  my-custom-executor:
+    docker:
+      - image: cimg/base:stable
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/gabriel-nds/WebScrapingGloboEsporte/environment-variables
+          username: $DOCKER_HUB_USER
+          password: $DOCKER_HUB_PASSWORD
+
+jobs:
+  ge-flamengo-spider:
+    executor: my-custom-executor
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            pip install -r requirements.txt
+            # You may need to install Chrome WebDriver or other dependencies here
+
+      - run:
+          name: Run Spider
+          command: scrapy crawl globoesporte
+
+workflows:
+  my-custom-workflow:
+    jobs:
+      - ge-flamengo-spider
