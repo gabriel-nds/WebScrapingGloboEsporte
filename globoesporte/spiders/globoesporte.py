@@ -69,7 +69,7 @@ class GloboesporteSpider(scrapy.Spider):
         article_date = datetime.strptime(date, "%d/%m/%Y")
 
         # Use timedelta to calculate the cutoff date
-        cutoff_date = datetime.now() - timedelta(days=30)  
+        cutoff_date = datetime.now() - timedelta(days=5)  
 
         # Compare the article date with the cutoff date
         if article_date < cutoff_date:

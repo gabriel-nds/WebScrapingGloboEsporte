@@ -9,28 +9,16 @@ executors:
           username: $globoesporte  
           password: $globoesportekey
 
-
 jobs:
   ge-flamengo-spider:
-    executor: machine-executor
+    executor: my-custom-executor
     steps:
-      - run:
-          name: Install Google Chrome
-          command: |
-            curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            sudo apt-get update
-            sudo apt-get install -y google-chrome-stable
-
+      - checkout
       - run:
           name: Install Dependencies
           command: |
             pip install -r requirements.txt
-
-      - run:
-          name: Check Chrome Version
-          command: google-chrome --version
-
+      
       - run:
           name: Run Spider
           command: scrapy crawl globoesporte
@@ -39,4 +27,3 @@ workflows:
   my-custom-workflow:
     jobs:
       - ge-flamengo-spider
-      
