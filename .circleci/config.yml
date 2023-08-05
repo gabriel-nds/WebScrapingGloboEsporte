@@ -13,7 +13,6 @@ jobs:
   ge-flamengo-spider:
     executor: my-custom-executor
     steps:
-      - checkout
       - run:
           name: Install Dependencies
           command: |
