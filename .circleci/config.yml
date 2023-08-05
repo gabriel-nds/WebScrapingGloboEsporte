@@ -9,16 +9,11 @@ executors:
           username: $globoesporte  
           password: $globoesportekey
 
+
 jobs:
   ge-flamengo-spider:
-    executor: my-custom-executor
+    executor: machine-executor
     steps:
-      - checkout
-      - run:
-          name: Install Dependencies
-          command: |
-            pip install -r requirements.txt
-      
       - run:
           name: Install Google Chrome
           command: |
@@ -26,6 +21,11 @@ jobs:
             echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
             sudo apt-get update
             sudo apt-get install -y google-chrome-stable
+
+      - run:
+          name: Install Dependencies
+          command: |
+            pip install -r requirements.txt
 
       - run:
           name: Check Chrome Version
@@ -39,3 +39,4 @@ workflows:
   my-custom-workflow:
     jobs:
       - ge-flamengo-spider
+      
