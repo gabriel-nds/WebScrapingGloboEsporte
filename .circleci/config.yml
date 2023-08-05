@@ -20,6 +20,10 @@ jobs:
             pip install -r requirements.txt
       
       - run:
+          name: Check Chrome Version
+          command: google-chrome --version
+
+      - run:
           name: Run Spider
           command: scrapy crawl globoesporte
 
