@@ -17,9 +17,9 @@ class GloboesporteSpider(scrapy.Spider):
         # Selenium code to get URLs
         website_url = 'https://ge.globo.com/futebol/times/flamengo/'
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--remote-debugging-port=9222")  # Add this line
+        # chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--disable-gpu")
+        # chrome_options.add_argument("--remote-debugging-port=9222")  # Add this line
         service = Service()
         driver = webdriver.Chrome(service=service, options=chrome_options)
         driver.get(website_url)
