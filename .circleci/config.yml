@@ -18,18 +18,22 @@ jobs:
     executor: my-custom-executor
     steps:
       - checkout
-      
+
       # Move the pip install command to before the "Run Spider" step to avoid reinstalling on every run
       - run:
           name: Install Dependencies
           command: |
             pip install -r requirements.txt
-      
+
       # Add the following steps to install Chrome browser and ChromeDriver
       - browser-tools/install-chrome
-      - browser-tools/install-chromedriver:
-          chromedriver-install-dir: /usr/local/bin  # Set the installation path for ChromeDriver
-      
+      - run:
+          name: Install ChromeDriver
+          command: |
+            CHROME_DRIVER_PATH="/usr/local/bin"  # Set the installation path for ChromeDriver
+            export CHROME_DRIVER_PATH
+            browser-tools/install-chromedriver
+
       - run:
           name: Run Spider
           command: scrapy crawl globoesporte
