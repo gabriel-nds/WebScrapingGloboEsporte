@@ -25,9 +25,8 @@ jobs:
           command: |
             pip install -r requirements.txt
       
-      # Add the following steps to install Chrome browser and ChromeDriver
+      # Add the following steps to install Chrome browser
       - browser-tools/install-chrome
-      - browser-tools/chromedriver-install-dir
       
       - run:
           name: Run Spider
