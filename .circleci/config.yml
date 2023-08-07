@@ -6,21 +6,33 @@ orbs:
 executors:
   my-custom-executor:
     docker:
-      - image: circleci/python:3.9
-    working_directory: ~/repo
-  my-custom-executor-with-chrome:
-    docker:
-      - image: circleci/python:3.9
-      - image: circleci/chrome:115.0.5790.114-20230201
+      - image: python:3.9
+        auth:
+          # Ensure you have first added these secrets
+          # Visit app.circleci.com/settings/project/github/gabriel-nds/WebScrapingGloboEsporte/environment-variables
+          username: $globoesporte  
+          password: $globoesportekey
 
 jobs:
   ge-flamengo-spider:
-    executor: my-custom-executor-with-chrome
+    executor: my-custom-executor
     steps:
       - checkout
+
+      # Use the orb to install Chrome browser with the specific version
+      - browser-tools/install-chrome:
+          version: '115.0.5790.114'
+          arch: 'arm64'
+      
+      # Move the pip install command to before the "Run Spider" step to avoid reinstalling on every run
       - run:
           name: Install Dependencies
-          command: pip install -r requirements.txt
+          command: |
+            pip install -r requirements.txt
+      
+      # Add the following steps to install Chrome browser
+      - browser-tools/install-chrome
+      
       - run:
           name: Run Spider
           command: scrapy crawl globoesporte
