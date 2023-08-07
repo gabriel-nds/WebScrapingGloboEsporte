@@ -1,4 +1,8 @@
-version: 2.1
+version: '2.1'
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.3
+
 executors:
   my-custom-executor:
     docker:
@@ -14,23 +18,16 @@ jobs:
     executor: my-custom-executor
     steps:
       - checkout
-
-      # Add the following steps to install Chrome browser
-      - run:
-          name: Install Chrome
-          command: |
-            apt-get update
-            apt-get install -y wget gnupg2
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list
-            apt-get update
-            apt-get install -y google-chrome-stable
-
+      
       # Move the pip install command to before the "Run Spider" step to avoid reinstalling on every run
       - run:
           name: Install Dependencies
           command: |
             pip install -r requirements.txt
+      
+      # Add the following steps to install Chrome browser and ChromeDriver
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       
       - run:
           name: Run Spider
