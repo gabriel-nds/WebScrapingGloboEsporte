@@ -18,11 +18,7 @@ jobs:
     executor: my-custom-executor
     steps:
       - checkout
-
-      # Use the orb to install Chrome browser with the specific version
-      - browser-tools/install-chrome:
-          version: '115.0.5790.114'
-      
+          
       # Move the pip install command to before the "Run Spider" step to avoid reinstalling on every run
       - run:
           name: Install Dependencies
