@@ -3,7 +3,6 @@ import time
 import scrapy
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from scrapy.exceptions import CloseSpider
 from ..items import JournalItem
@@ -17,10 +16,10 @@ class GloboesporteSpider(scrapy.Spider):
         # Selenium code to get URLs
         website_url = 'https://ge.globo.com/futebol/times/flamengo/'
         chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        # chrome_options.add_argument("--disable-gpu")
-        service = Service()
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+
+        driver = webdriver.Chrome(chrome_options)
         driver.get(website_url)
 
         # Infinite scroll
@@ -31,7 +30,7 @@ class GloboesporteSpider(scrapy.Spider):
         while scroll_count < scroll_limit:
             # Scroll to the bottom to load more articles
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(3)  # Add a delay to allow the page to load new content (adjust as needed)
+            time.sleep(15)  # Add a delay to allow the page to load new content (adjust as needed)
 
             # Extracting URLs for different sections of the website
             top_main_urls = driver.find_elements(by=By.XPATH, value="//a[@class='bstn-hl-link']")
@@ -69,7 +68,7 @@ class GloboesporteSpider(scrapy.Spider):
         article_date = datetime.strptime(date, "%d/%m/%Y")
 
         # Use timedelta to calculate the cutoff date
-        cutoff_date = datetime.now() - timedelta(days=2)  
+        cutoff_date = datetime.now() - timedelta(days=4)  
 
         # Compare the article date with the cutoff date
         if article_date < cutoff_date:
