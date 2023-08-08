@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Run Spider
           # command: scrapy crawl globoesporte
-          command: scrapy crawl globoesporte > chrome_output.txt 2>&1
+          command: scrapy crawl globoesporte
 
 workflows:
   my-custom-workflow:
