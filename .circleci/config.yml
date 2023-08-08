@@ -6,7 +6,7 @@ orbs:
 executors:
   my-custom-executor:
     docker:
-      - image: circleci/python:3.9-selenium
+      - image: python:3.9
         auth:
           username: $globoesporte  
           password: $globoesportekey
