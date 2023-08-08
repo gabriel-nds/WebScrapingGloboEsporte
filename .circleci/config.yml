@@ -6,10 +6,8 @@ orbs:
 executors:
   my-custom-executor:
     docker:
-      - image: python:3.9
+      - image: circleci/python:3.9-selenium
         auth:
-          # Ensure you have first added these secrets
-          # Visit app.circleci.com/settings/project/github/gabriel-nds/WebScrapingGloboEsporte/environment-variables
           username: $globoesporte  
           password: $globoesportekey
 
@@ -27,12 +25,13 @@ jobs:
       
       # Add the following steps to install Chrome browser
       - browser-tools/install-chrome
-      # - browser-tools/install-chromedriver
+      - browser-tools/install-chromedriver
 
             
       - run:
           name: Run Spider
-          command: scrapy crawl globoesporte
+          # command: scrapy crawl globoesporte
+          command: scrapy crawl globoesporte > chrome_output.txt 2>&1
 
 workflows:
   my-custom-workflow:
