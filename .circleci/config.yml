@@ -27,7 +27,7 @@ jobs:
       
       # Add the following steps to install Chrome browser
       - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
+      # - browser-tools/install-chromedriver
 
             
       - run:
