@@ -18,7 +18,7 @@ class GloboesporteSpider(scrapy.Spider):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
-
+        
         driver = webdriver.Chrome(chrome_options)
         driver.get(website_url)
 
