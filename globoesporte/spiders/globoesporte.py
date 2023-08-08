@@ -17,8 +17,9 @@ class GloboesporteSpider(scrapy.Spider):
         chrome_options = Options()
         # chrome_options.add_argument("--headless")
         # chrome_options.add_argument("--disable-gpu")
+        chrome_options.binary_location = '/usr/bin/google-chrome-stable'  # Correct path to the Chrome binary
         
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(chrome_options)
         driver.get(website_url)
 
         # Infinite scroll
