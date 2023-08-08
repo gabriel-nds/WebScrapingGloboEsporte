@@ -15,10 +15,10 @@ class GloboesporteSpider(scrapy.Spider):
         # Selenium code to get URLs
         website_url = 'https://ge.globo.com/futebol/times/flamengo/'
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
+        # chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--disable-gpu")
         
-        driver = webdriver.Chrome(chrome_options)
+        driver = webdriver.Chrome()
         driver.get(website_url)
 
         # Infinite scroll
