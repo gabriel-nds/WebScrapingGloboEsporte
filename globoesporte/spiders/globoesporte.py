@@ -7,7 +7,6 @@ from selenium.webdriver.chrome.options import Options
 from scrapy.exceptions import CloseSpider
 from ..items import JournalItem
 
-
 class GloboesporteSpider(scrapy.Spider):
     name = "globoesporte"
     allowed_domains = ["ge.globo.com"]
