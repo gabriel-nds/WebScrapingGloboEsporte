@@ -34,7 +34,6 @@ requests==2.31.0
 requests-file==1.5.1
 Scrapy==2.9.0
 scrapy-selenium==0.0.7
-scrapy-splash==0.9.0
 selenium==4.11.2
 service-identity==23.1.0
 six==1.16.0
