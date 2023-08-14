@@ -106,6 +106,8 @@ The spider stores scraped data in an SQLite database named ge_articles.db. The S
 
 ### MongoDB Pipeline
 
+![Captura de Tela 2023-08-14 às 12 00 35](https://github.com/gabriel-nds/WebScrapingGloboEsporte/assets/118403829/d9f9f275-b222-4bdd-ad1c-d044c6e15958)
+
 The spider also saves the scraped data in a NoSQL database, MongoDB. The data is stored in a collection named articles within the GloboEsporte_Scraped_Data database. The structure of the data in MongoDB is the same as that of the SQLite pipeline.
 
 ### Known Issues
