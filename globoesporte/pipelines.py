@@ -22,7 +22,7 @@ class GloboesportePipeline:
    
     
 class MongodbPipeline:
-    collection_name = 'GE_Flamengo_2023_News'
+    collection_name = 'GloboEsporteNews'
 
     def open_spider(self, spider):
         self.client = pymongo.MongoClient("mongodb+srv://globoesporte_webscraping:gPbuLCGnbnH2ApAG@globoesporte.o6lbwjs.mongodb.net/?retryWrites=true&w=majority")
