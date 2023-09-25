@@ -65,8 +65,8 @@ DOWNLOAD_DELAY = 1  # Set the delay to 1 second between requests
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "globoesporte.pipelines.GloboesportePipeline": 200,
-   "globoesporte.pipelines.MongodbPipeline": 300,
-   "globoesporte.pipelines.SQLitePipeline": 400,
+   # "globoesporte.pipelines.MongodbPipeline": 300,
+   # "globoesporte.pipelines.SQLitePipeline": 400,
    }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
