@@ -21,57 +21,57 @@ class GloboesportePipeline:
         return item
    
     
-class MongodbPipeline:
-    collection_name = 'GloboEsporteNews'
+# class MongodbPipeline:
+#     collection_name = 'GloboEsporteNews'
 
-    def open_spider(self, spider):
-        self.client = pymongo.MongoClient("mongodb+srv://globoesporte_webscraping:gPbuLCGnbnH2ApAG@globoesporte.o6lbwjs.mongodb.net/?retryWrites=true&w=majority")
-        self.db = self.client['GloboEsporte_Scraped_Data']
+#     def open_spider(self, spider):
+#         self.client = pymongo.MongoClient("mongodb+srv://globoesporte_webscraping:gPbuLCGnbnH2ApAG@globoesporte.o6lbwjs.mongodb.net/?retryWrites=true&w=majority")
+#         self.db = self.client['GloboEsporte_Scraped_Data']
 
-    def close_spider(self, spider):
-        self.client.close()
+#     def close_spider(self, spider):
+#         self.client.close()
 
-    def process_item(self, item, spider):
-        self.db[self.collection_name].insert_one(dict(item))
-        return item
+#     def process_item(self, item, spider):
+#         self.db[self.collection_name].insert_one(dict(item))
+#         return item
 
 
-class SQLitePipeline:
-    collection_name = 'articles'
+# class SQLitePipeline:
+#     collection_name = 'articles'
 
-    def open_spider(self, spider):
-        self.connection = sqlite3.connect("ge_articles.db")
-        self.c = self.connection.cursor()
+#     def open_spider(self, spider):
+#         self.connection = sqlite3.connect("ge_articles.db")
+#         self.c = self.connection.cursor()
 
-        try:
-            self.c.execute('''
-                CREATE TABLE ge_transcripts(
-                    title TEXT,
-                    subtitle TEXT,
-                    author TEXT,
-                    text TEXT,
-                    quotes TEXT
-                )
-            ''')
-            self.connection.commit()
-        except sqlite3.OperationalError:
-            pass 
+#         try:
+#             self.c.execute('''
+#                 CREATE TABLE ge_transcripts(
+#                     title TEXT,
+#                     subtitle TEXT,
+#                     author TEXT,
+#                     text TEXT,
+#                     quotes TEXT
+#                 )
+#             ''')
+#             self.connection.commit()
+#         except sqlite3.OperationalError:
+#             pass 
 
-    def close_spider(self, spider):
-        self.connection.close()
+#     def close_spider(self, spider):
+#         self.connection.close()
 
-    def process_item(self, item, spider):
-        # Convert the quotes list of dictionaries to a JSON string
-        item['quotes'] = json.dumps(item['quotes'])
+#     def process_item(self, item, spider):
+#         # Convert the quotes list of dictionaries to a JSON string
+#         item['quotes'] = json.dumps(item['quotes'])
 
-        self.c.execute('''
-            INSERT INTO ge_transcripts (title, subtitle, author, text, quotes) VALUES (?, ?, ?, ?, ?)
-        ''', (
-            item['title'],
-            item['subtitle'],
-            item['author'],
-            item['text'],
-            item['quotes'],
-        ))
-        self.connection.commit()
-        return item
+#         self.c.execute('''
+#             INSERT INTO ge_transcripts (title, subtitle, author, text, quotes) VALUES (?, ?, ?, ?, ?)
+#         ''', (
+#             item['title'],
+#             item['subtitle'],
+#             item['author'],
+#             item['text'],
+#             item['quotes'],
+#         ))
+#         self.connection.commit()
+#         return item
