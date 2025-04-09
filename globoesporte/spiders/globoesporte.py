@@ -1,11 +1,23 @@
 from datetime import datetime, timedelta
 import time
 import scrapy
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from scrapy.exceptions import CloseSpider
+
 from ..items import JournalItem
+from selenium import webdriver
+from selenium.webdriver.common.by import By  
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
+#some of these importes avoid commom erros when using wsl
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+# Use the system-installed chromedriver
+driver = webdriver.Chrome(service=Service('/usr/bin/chromedriver'), options=chrome_options)
 
 
 class GloboesporteSpider(scrapy.Spider):
@@ -13,13 +25,11 @@ class GloboesporteSpider(scrapy.Spider):
     allowed_domains = ["ge.globo.com"]
 
     def start_requests(self):
+        #breakpoint()
         # Initialize Selenium to gather article URLs from the website
         website_url = 'https://ge.globo.com'
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-
-        driver = webdriver.Chrome(chrome_options)
+       
         driver.get(website_url)
 
         # Infinite scroll to load more articles
