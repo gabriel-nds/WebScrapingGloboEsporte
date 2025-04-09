@@ -29,10 +29,7 @@ class GloboesporteSpider(scrapy.Spider):
         # Initialize Selenium to gather article URLs from the website
         website_url = 'https://ge.globo.com'
         chrome_options = Options()
-        #chrome_options.add_argument("--headless")
-        #chrome_options.add_argument("--disable-gpu")
-
-        #driver = webdriver.Chrome(chrome_options)
+       
         driver.get(website_url)
 
         # Infinite scroll to load more articles
